@@ -1,5 +1,6 @@
 import ContactList from "../ContactList/ContactList";
 import SearchBox from "../SearchBox/SearchBox";
+import ContactForm from "../ContactForm/ContactForm";
 import { useState } from "react";
 import s from "./App.module.css";
 
@@ -13,8 +14,15 @@ const App = () => {
 
   const [filter, setFilter] = useState("");
 
+  const addContact = (newContact) => {
+    console.log("add contact:", newContact);
+    setContacts((prevContacts) => {
+      return [...prevContacts, newContact];
+    });
+  };
+
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.includes(filter.toLowerCase())
   );
 
   const hanleFilterChange = (event) => {
@@ -24,6 +32,7 @@ const App = () => {
   return (
     <div className={s.wrapper}>
       <h1 className={s.title}>Phonebook</h1>
+      <ContactForm onSubmit={addContact} />
       <SearchBox filter={filter} change={hanleFilterChange} />
       <ContactList contacts={filteredContacts} />
     </div>
