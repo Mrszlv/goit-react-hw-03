@@ -22,7 +22,7 @@ const App = () => {
   };
 
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase.includes(filter.toLowerCase())
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   const hanleFilterChange = (event) => {
