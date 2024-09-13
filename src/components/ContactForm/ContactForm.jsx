@@ -8,7 +8,7 @@ const ContactForm = ({ onSubmit }) => {
   console.log(onSubmit);
 
   const initialValue = {
-    username: "",
+    name: "",
     number: "",
   };
 
@@ -17,14 +17,14 @@ const ContactForm = ({ onSubmit }) => {
 
     onSubmit({
       id: nanoid(),
-      username: values.text,
+      name: values.name,
       number: values.number,
     });
     options.resetForm();
   };
 
   const FeedbackSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Min 3 characters!"),
@@ -38,7 +38,7 @@ const ContactForm = ({ onSubmit }) => {
       onSubmit={handleSubmit}
     >
       <Form className={s.form}>
-        <Field type="text" name="username" />
+        <Field type="name" name="name" />
         <Field type="number" name="number" />
         <button type="submit" className={s.btn}>
           Add contact
