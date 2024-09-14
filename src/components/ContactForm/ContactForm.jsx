@@ -1,12 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-
 import s from "./ContactForm.module.css";
 import { nanoid } from "nanoid";
 
-const ContactForm = ({ onSubmit }) => {
-  console.log(onSubmit);
-
+const ContactForm = (addContact) => {
   const initialValue = {
     name: "",
     number: "",
@@ -15,7 +12,7 @@ const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, options) => {
     console.log(values);
 
-    onSubmit({
+    addContact({
       id: nanoid(),
       name: values.name,
       number: values.number,
@@ -38,8 +35,8 @@ const ContactForm = ({ onSubmit }) => {
       onSubmit={handleSubmit}
     >
       <Form className={s.form}>
-        <Field type="name" name="name" />
-        <Field type="number" name="number" />
+        <Field type="text" name="name" />
+        <Field type="text" name="number" />
         <button type="submit" className={s.btn}>
           Add contact
         </button>

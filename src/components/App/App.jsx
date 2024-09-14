@@ -3,6 +3,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import ContactForm from "../ContactForm/ContactForm";
 import { useState } from "react";
 import s from "./App.module.css";
+import { nanoid } from "nanoid";
 
 const App = () => {
   const [contacts, setContacts] = useState([
@@ -14,11 +15,17 @@ const App = () => {
 
   const [filter, setFilter] = useState("");
 
-  const addContact = (newContact) => {
-    console.log("add contact:", newContact);
-    setContacts((prevContacts) => {
-      return [...prevContacts, newContact];
-    });
+  const addContact = (name, number) => {
+    const newContact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+  };
+
+  const deleteContact = (id) => {
+    setContacts(contacts.filter((contact) => contact.id !== id));
   };
 
   const filteredContacts = contacts.filter((contact) =>
@@ -32,9 +39,12 @@ const App = () => {
   return (
     <div className={s.wrapper}>
       <h1 className={s.title}>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm addContact={addContact} />
       <SearchBox filter={filter} change={hanleFilterChange} />
-      <ContactList contacts={filteredContacts} />
+      <ContactList
+        filterContacts={filteredContacts}
+        deleteContact={deleteContact}
+      />
     </div>
   );
 };
