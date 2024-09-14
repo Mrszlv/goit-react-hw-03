@@ -47,7 +47,9 @@ const App = () => {
 
   return (
     <div className={s.wrapper}>
-      <h1 className={s.title}>Phonebook</h1>
+      <h1 className={s.title}>
+        Phone<span className={s.span}>book</span>
+      </h1>
       <ContactForm addContact={addContact} />
       <SearchBox filter={filter} change={hanleFilterChange} />
       <ContactList
