@@ -15,11 +15,11 @@ const App = () => {
 
   const [filter, setFilter] = useState("");
 
-  const addContact = (name, number) => {
+  const addContact = (values) => {
     const newContact = {
       id: nanoid(),
-      name,
-      number,
+      name: values.name,
+      number: values.number,
     };
     setContacts((prevContacts) => [...prevContacts, newContact]);
   };

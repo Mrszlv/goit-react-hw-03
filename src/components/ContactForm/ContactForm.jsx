@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { nanoid } from "nanoid";
 
-const ContactForm = (addContact) => {
+const ContactForm = ({ addContact }) => {
   const initialValue = {
     name: "",
     number: "",
@@ -11,7 +11,6 @@ const ContactForm = (addContact) => {
 
   const handleSubmit = (values, options) => {
     console.log(values);
-
     addContact({
       id: nanoid(),
       name: values.name,
@@ -20,7 +19,7 @@ const ContactForm = (addContact) => {
     options.resetForm();
   };
 
-  const FeedbackSchema = Yup.object().shape({
+  const ContactSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
@@ -31,7 +30,7 @@ const ContactForm = (addContact) => {
   return (
     <Formik
       initialValues={initialValue}
-      validationSchema={FeedbackSchema}
+      validationSchema={ContactSchema}
       onSubmit={handleSubmit}
     >
       <Form className={s.form}>
