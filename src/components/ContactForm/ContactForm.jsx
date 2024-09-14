@@ -10,7 +10,6 @@ const ContactForm = ({ addContact }) => {
   };
 
   const handleSubmit = (values, options) => {
-    console.log(values);
     addContact({
       id: nanoid(),
       name: values.name,
@@ -21,10 +20,17 @@ const ContactForm = ({ addContact }) => {
 
   const ContactSchema = Yup.object().shape({
     name: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Min 3 characters!"),
-    number: Yup.string().min(3).max(50).matches(/[0-9]/).required(),
+      .min(3, "Min 3 characters")
+      .max(50, "Max 50 characters")
+      .required("Required field!"),
+    number: Yup.string()
+      .matches(
+        /^[0-9()+\-\s]+$/,
+        "The phone number can only contain numbers and symbols +, -, (, ) and spaces') // Numbers and symbols are allowed"
+      )
+      .min(3, "Min 3 characters")
+      .max(50, "Max 50 characters")
+      .required("Required fild!"),
   });
 
   return (
@@ -34,8 +40,16 @@ const ContactForm = ({ addContact }) => {
       onSubmit={handleSubmit}
     >
       <Form className={s.form}>
-        <Field type="text" name="name" />
-        <Field type="text" name="number" />
+        <label className={s.label}>
+          Name
+          <Field type="text" name="name" className={s.field} />
+          <ErrorMessage className={s.error} name="name" component="span" />
+        </label>
+        <label className={s.label}>
+          Number phone
+          <Field type="text" name="number" className={s.field} />
+          <ErrorMessage className={s.error} name="number" component="span" />
+        </label>
         <button type="submit" className={s.btn}>
           Add contact
         </button>

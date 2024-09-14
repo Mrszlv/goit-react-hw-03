@@ -5,7 +5,7 @@ const Contact = ({ id, name, number, deleteContact }) => {
     <ul className={s.container}>
       <li className={s.item}>
         <span className={s.name}>{name}:</span>{" "}
-        <span className={s.number}>{number}</span>
+        <span className={s.number}>tel: {number}</span>
       </li>
       <button className={s.btn} onClick={() => deleteContact(id)}>
         Delete

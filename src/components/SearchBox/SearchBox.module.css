@@ -1,3 +1,7 @@
+.wrapp:hover {
+  color: yellowgreen;
+}
+
 .text {
   margin-bottom: 10px;
 }
@@ -7,4 +11,9 @@
   margin-bottom: 30px;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.input:hover {
+  border-color: yellowgreen;
 }

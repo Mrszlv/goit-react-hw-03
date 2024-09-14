@@ -8,6 +8,11 @@
   width: 360px;
 }
 
+.container:hover {
+  border-color: yellowgreen;
+  color: yellowgreen;
+}
+
 .item {
   display: flex;
   flex-direction: column;
@@ -15,4 +20,13 @@
 
 .name {
   font-weight: bold;
+}
+.btn {
+  background-color: transparent;
+  border: 1px solid;
+}
+
+.btn:hover {
+  border-color: red;
+  color: red;
 }
